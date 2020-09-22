@@ -1,0 +1,48 @@
+---
+title: "2 The Very Basics"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Some expressions
+```{r}
+2+2
+```
+```{r}
+# sequences
+1:10
+```
+
+## Objects
+```{r}
+# assignments
+die <- 1:6
+die
+```
+### Vector Recycling
+```{r}
+die + 1:2
+```
+```{r}
+die + 1:4
+```
+## Functions
+```{r}
+round(2/3, 4)
+```
+```{r}
+mean(1:10)
+```
+```{r}
+factorial(7)
+```
+### Arguments
+```{r}
+args(sample)
+```
+```{r}
+sample(x = die, size = 1)
+```
