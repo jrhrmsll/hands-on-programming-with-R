@@ -64,7 +64,10 @@ weighted_roll <- function() {
   
   sum(dice)
 }
+```
 
+
+```{r}
 x <- replicate(n = 10000, expr = roll())
 qplot(x, binwidth = 1)
 

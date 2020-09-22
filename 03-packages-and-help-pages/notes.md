@@ -72,19 +72,21 @@ weighted_roll <- function() {
   
   sum(dice)
 }
+```
 
+``` r
 x <- replicate(n = 10000, expr = roll())
 qplot(x, binwidth = 1)
 ```
 
-![](notes_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](notes_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 ``` r
 x <- replicate(n = 10000, expr = weighted_roll())
 qplot(x, binwidth = 1)
 ```
 
-![](notes_files/figure-gfm/unnamed-chunk-7-2.png)<!-- -->
+![](notes_files/figure-gfm/unnamed-chunk-8-2.png)<!-- -->
 
 ## Help
 
