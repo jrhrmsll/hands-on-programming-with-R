@@ -1,0 +1,236 @@
+---
+title: "5 R Objects"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Atomic Vectors
+
+- one dimension
+- same data type
+  - integer
+  - double
+  - complex
+  - character
+  - logical
+  - raw
+
+__A vector of one integer__
+```{r}
+number <- 1
+is.vector(number)
+```
+__A vector formed by values of a die__
+```{r}
+die <- 1:6
+```
+
+__A vector of the powers of 10__
+```{r}
+numbers <- c(1, 10, 100, 1000)
+numbers
+```
+
+__The length of the above vector__
+```{r}
+length(numbers)
+```
+
+__A vector of one element of type character__
+```{r}
+str <- "hello"
+str
+```
+
+### Double
+```{r}
+x <- 1
+typeof(x)
+```
+
+```{r}
+y <- 0.2
+typeof(y)
+```
+
+### Integer
+_An integer should end with an 'L' in order not to be stored as double_
+```{r}
+week_days <- 7L
+typeof(week_days)
+```
+
+### Character
+```{r}
+typeof(str)
+```
+
+### Logical
+```{r}
+is_greater <- 100 > 10
+typeof(is_greater)
+```
+
+### Null values
+```{r}
+none <- NULL
+typeof(none)
+```
+
+## Attributes
+__Common Attributes__
+
+- names
+- dimensions 
+- classes
+
+### Names 
+__Set Names__
+```{r} 
+names(die) <- c("one", "two", "three", "four", "five", "six")
+```
+__Get Names__
+```{r}
+# by calling names
+names(die)
+
+# by calling attributes
+attributes(die)
+
+# by looking at the vector
+die
+```
+
+__Remove Names__
+```{r}
+names(die) <- NULL
+names(die)
+```
+
+### Dim
+_Transform an atomic vector into an n-dimensional array._
+```{r}
+dim(die) <- c(2, 3)
+die
+```
+## Matrices
+```{r}
+m <- matrix(die, nrow = 2)
+m
+```
+As dim, `matrix` fill the matrix column by column by default. Specifying the argument `byrow = TRUE` it's possible to fill the matrix row by row.
+
+```{r}
+m <- matrix(die, nrow = 2, byrow = TRUE)
+m
+```
+
+## Arrays
+
+```{r}
+a <- array(die, dim = c(2, 3))
+a
+```
+
+## Class
+```{r}
+dim(die) <- c(2, 3)
+# type
+typeof(die)
+
+# class
+class(die)
+```
+
+If a object does not have a `class` attribute class will return a value base on the object atomic type.
+```{r}
+class(number)
+class(str)
+```
+
+### Factors
+R’s way of storing categorical information.
+
+```{r}
+color <- factor(c("red", "blue", "green"))
+typeof(color)
+
+attributes(color)
+```
+
+What is storing R?
+```{r}
+color
+unclass(color)
+```
+
+_Factor looks like character but behave like integers._
+
+Treating as character
+```{r}
+as.character(color)
+```
+
+## Coercion
+_If a character is present everything will be converted to a character._
+```{r}
+v <- c(1, 2, 10, "twelve")
+v
+```
+
+_If a vector only contains logicals and numbers everything will be converted to a numbers._
+```{r}
+v <- c(TRUE, FALSE, 1L, 0L)
+v
+```
+###  Explicit Conversion
+```{r}
+as.character(1)
+
+as.numeric("10")
+
+as.logical(0)
+```
+## Lists
+- One-dimensional data set.
+- Group R objects like vector or other lists.
+
+```{r}
+l <- list(10, "10", c(1:10), FALSE, list("a", "b", "c"))
+l
+
+# two-system notation
+l[[5]][2]
+```
+## Data Frames
+> Data frames are the two-dimensional version of a list.
+
+```{r}
+df <- data.frame(
+  names = c("one", "two", "three", "four", "five", "six"),  
+  values = c(1:6)
+)
+
+df
+```
+
+__Data Frame type__
+```{r}
+typeof(df)
+```
+
+__Data Frame class__
+```{r}
+class(df)
+```
+
+__Structure display__
+```{r}
+str(df)
+```
+
+> Data frames store one of the most common forms of data used in data science, tabular data.
+## Loading Data
