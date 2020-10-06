@@ -57,7 +57,7 @@ typeof(y)
 ```
 
 ### Integer
-_An integer should end with an 'L' in order not to be stored as double_
+>An integer should end with an 'L' in order not to be stored as double
 ```{r}
 week_days <- 7L
 typeof(week_days)
@@ -111,17 +111,18 @@ names(die)
 ```
 
 ### Dim
-_Transform an atomic vector into an n-dimensional array._
+>Transform an atomic vector into an n-dimensional array.
 ```{r}
 dim(die) <- c(2, 3)
 die
 ```
+
 ## Matrices
 ```{r}
 m <- matrix(die, nrow = 2)
 m
 ```
-As dim, `matrix` fill the matrix column by column by default. Specifying the argument `byrow = TRUE` it's possible to fill the matrix row by row.
+As dim, `matrix` fill the matrix column by column by default. Specifying the argument `byrow = TRUE` is possible to fill the matrix row by row.
 
 ```{r}
 m <- matrix(die, nrow = 2, byrow = TRUE)
