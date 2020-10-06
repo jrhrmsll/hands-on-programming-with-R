@@ -414,4 +414,19 @@ str(df)
     ##  $ values: int  1 2 3 4 5 6
 
 > Data frames store one of the most common forms of data used in data
-> science, tabular data. \#\# Loading Data
+> science, tabular data.
+
+## Loading Data
+
+``` r
+deck <- read.csv("deck.csv")
+head(deck)
+```
+
+    ##    face   suit value
+    ## 1  king spades    13
+    ## 2 queen spades    12
+    ## 3  jack spades    11
+    ## 4   ten spades    10
+    ## 5  nine spades     9
+    ## 6 eight spades     8

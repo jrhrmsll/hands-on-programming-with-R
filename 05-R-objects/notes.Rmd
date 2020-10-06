@@ -234,4 +234,9 @@ str(df)
 ```
 
 > Data frames store one of the most common forms of data used in data science, tabular data.
+
 ## Loading Data
+```{r}
+deck <- read.csv("deck.csv")
+head(deck)
+```
