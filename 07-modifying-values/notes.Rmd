@@ -1,0 +1,205 @@
+---
+title: "7 Modifying Values"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r include=FALSE}
+deck <- read.csv("../05-R-objects/deck.csv")
+deck2 <- deck
+```
+
+```{r include=FALSE}
+shuffle <- function(deck) {
+  ramdom <- sample(1:52, size = 52)
+  deck[ramdom, ]
+}
+```
+
+
+## Changing Values in Place
+
+```{r}
+vec <- c(0, 0, 0, 0, 0, 0)
+vec
+```
+
+Selecting the first value:
+
+```{r}
+vec[1]
+```
+
+Changing the first value:
+
+```{r}
+vec[1] <- 1000
+vec
+```
+Changing multiples values at once:
+
+```{r}
+vec[c(1, 3, 5)] <- c(1, 10, 100)
+vec
+```
+
+>You can also create values that do not yet exist in your object. R will expand the object to accommodate the new values:
+
+```{r}
+vec[7] <- 0
+vec
+```
+
+Adding a new column to the data frame:
+```{r}
+deck2$new <- 1:52
+head(deck2)
+```
+
+Remove the column from the data frame:
+
+```{r}
+deck2$new <- NULL
+head(deck2)
+```
+
+##  Logical Subsetting
+
+> Logical subsetting provides a way to do targeted extraction and modification with R objects, a sort of search-and-destroy mission inside your own data sets.
+
+__How many Aces?__
+```{r}
+deck2$face
+```
+
+### Logical Tests
+
+```{r}
+deck2$face == "ace"
+```
+
+```{r}
+sum(deck2$face == "ace")
+```
+
+> You can use this method to spot and then change the aces in your deck—even if you’ve shuffled your cards. 
+
+```{r}
+deck3 <- shuffle(deck)
+deck3$value[deck3$face == "ace"] # logical indexing
+```
+
+Change the `ace` values in `deck3`:
+
+```{r}
+deck3$value[deck3$face == "ace"] <- 14 # applying recycling rules
+deck3$value[deck3$face == "ace"]
+```
+
+>Logical subsetting is a powerful technique because it lets you quickly identify, extract, and modify individual values in your data set. When you work with logical subsetting, you do not need to know where in your data set a value exists. You only need to know how to describe the value with a logical test.
+
+
+__Score the Deck for Hearts__
+
+```{r Hearts Game, include=FALSE}
+deck4 <- deck
+deck4$value <- 0
+```
+
+>Assign a value of 1 to every card in deck4 that has a suit of hearts. 
+
+```{r}
+deck4$value[deck4$suit == "hearts"]
+```
+
+```{r}
+deck4$value[deck4$suit == "hearts"] <- 1
+deck4$value[deck4$suit == "hearts"]
+```
+
+> In hearts, the queen of spades has the most unusual value of all: she’s worth 13 points.
+
+### Boolean Operators
+
+> Boolean operators combine multiple logical tests together into a single test.
+
+- `&`
+- `|`
+- `xor`
+- `!`
+- `any`
+- `all`
+
+```{r}
+queenOfSpades <- deck4$face == "queen" & deck4$suit == "spades"
+deck4$value[queenOfSpades] <- 13
+```
+
+```{r}
+queens <- deck4$face == "queen"
+deck4[queens, ]
+```
+
+__Blackjack__
+
+```{r Blackjack Game, include=FALSE}
+deck5 <- deck
+```
+
+```{r}
+head(deck5, 13)
+```
+
+> In blackjack, each number card has a value equal to its face value. Each face card (king, queen, or jack) has a value of 10.
+
+```{r}
+facecard <- deck5$face %in% c("king", "queen", "jack")
+deck5$value[facecard] <- 10
+
+head(deck5, 13)
+```
+
+> Now you just need to fix the ace values—or do you? It is hard to decide what value to give the aces because their exact value will change from hand to hand. At the end of each hand, an ace will equal 11 if the sum of the player’s cards does not exceed 21. Otherwise, the ace will equal 1. The actual value of the ace will depend on the other cards in the player’s hand. This is a case of missing information.
+
+## Missing Information
+
+> The NA character is a special symbol in R. It stands for “not available” and can be used as a placeholder for missing information. R will treat NA exactly as you should want missing information treated. 
+
+### na.rm
+
+```{r}
+c(NA, 1:50)
+mean(c(NA, 1:50))
+```
+> Most R functions come with the optional argument, na.rm, which stands for NA remove. R will ignore NAs when it evaluates a function if you add the argument na.rm = TRUE:
+
+```{r}
+mean(c(NA, 1:50), na.rm = TRUE)
+```
+
+### is.na
+
+The wrong way to test NA:
+```{r}
+NA == NA
+c(1, 2, 3, NA) == NA
+```
+
+> R supplies a special function that can test whether a value is an NA. The function is sensibly named is.na:
+
+```{r}
+is.na(NA)
+is.na(c(1, 2, 3, NA))
+```
+
+Now is possible to assign NA to ace values in Blackjack:
+
+```{r}
+deck5$value[deck5$face == "ace"] <- NA
+head(deck5, 13)
+```
+
