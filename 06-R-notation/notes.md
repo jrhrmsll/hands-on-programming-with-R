@@ -243,22 +243,22 @@ deal <- function(deck) {
 deal(deck)
 ```
 
-    ##    face  suit value
-    ## 22 five clubs     5
+    ##    face     suit value
+    ## 38  two diamonds     2
+
+``` r
+deal(deck)
+```
+
+    ##    face     suit value
+    ## 30  ten diamonds    10
 
 ``` r
 deal(deck)
 ```
 
     ##     face  suit value
-    ## 24 three clubs     3
-
-``` r
-deal(deck)
-```
-
-    ##    face  suit value
-    ## 17  ten clubs    10
+    ## 19 eight clubs     8
 
 ## Dollar Signs and Double Brackets
 
@@ -322,7 +322,7 @@ sum(l$numbers)
 
     ## [1] 55
 
-**Using double brackets will return the same as $**
+**Using double brackets will do the same as $ notation**
 
 ``` r
 l[[1]]
@@ -335,3 +335,11 @@ typeof(l[[1]])
 ```
 
     ## [1] "integer"
+
+Double brackets can be combined with the other indexing approaches:
+
+``` r
+l[["numbers"]]
+```
+
+    ##  [1]  1  2  3  4  5  6  7  8  9 10

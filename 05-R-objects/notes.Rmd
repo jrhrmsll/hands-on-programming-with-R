@@ -58,6 +58,7 @@ typeof(y)
 
 ### Integer
 >An integer should end with an 'L' in order not to be stored as double
+
 ```{r}
 week_days <- 7L
 typeof(week_days)
@@ -112,6 +113,7 @@ names(die)
 
 ### Dim
 >Transform an atomic vector into an n-dimensional array.
+
 ```{r}
 dim(die) <- c(2, 3)
 die
