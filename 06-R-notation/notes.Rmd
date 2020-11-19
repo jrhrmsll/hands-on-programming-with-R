@@ -136,21 +136,30 @@ deck[2, c("face", "suit")]
 
 ## Deal and Shuffle the Deck
 ```{r}
+deal <- function(cards) {
+  cards[1, ]
+}
+
 shuffle <- function(deck) {
   ramdom <- sample(1:52, size = 52)
   deck[ramdom, ]
-}
-
-deal <- function(deck) {
-  shuffle(deck)[1, ]
 }
 ```
 
 ```{r}
 deal(deck)
 deal(deck)
-deal(deck)
 ```
+
+```{r}
+deck2 <- shuffle(deck)
+```
+
+```{r}
+deal(deck2)
+```
+
+
 ## Dollar Signs and Double Brackets
 
 > Two types of object in R obey an optional second system of notation. You can extract values from data frames and lists with the $ syntax. 

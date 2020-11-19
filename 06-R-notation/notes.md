@@ -229,36 +229,40 @@ deck[2, c("face", "suit")]
 ## Deal and Shuffle the Deck
 
 ``` r
+deal <- function(cards) {
+  cards[1, ]
+}
+
 shuffle <- function(deck) {
   ramdom <- sample(1:52, size = 52)
   deck[ramdom, ]
 }
-
-deal <- function(deck) {
-  shuffle(deck)[1, ]
-}
 ```
 
 ``` r
 deal(deck)
 ```
 
-    ##    face     suit value
-    ## 38  two diamonds     2
+    ##   face   suit value
+    ## 1 king spades    13
 
 ``` r
 deal(deck)
 ```
 
-    ##    face     suit value
-    ## 30  ten diamonds    10
+    ##   face   suit value
+    ## 1 king spades    13
 
 ``` r
-deal(deck)
+deck2 <- shuffle(deck)
 ```
 
-    ##     face  suit value
-    ## 19 eight clubs     8
+``` r
+deal(deck2)
+```
+
+    ##     face   suit value
+    ## 50 three hearts     3
 
 ## Dollar Signs and Double Brackets
 
