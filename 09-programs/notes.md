@@ -16,7 +16,7 @@ get_symbols <- function() {
 get_symbols()
 ```
 
-    ## [1] "C" "0" "B"
+    ## [1] "DD" "BB" "B"
 
 The full slot machine:
 
@@ -110,7 +110,7 @@ score <- function (symbols) {
   # identify case
   
   # it's possible to test three of the same type with:
-  # length(unique(symbols) == 1)
+  # length(unique(symbols)) == 1
   same <- symbols[1] == symbols[2] && symbols[2] == symbols[3]
   
   
@@ -136,8 +136,13 @@ score <- function (symbols) {
 
 ``` r
 play <- function() {
+  # step 1: generate symbols
   symbols <- get_symbols()
+
+  # step 2: display the symbols
   print(symbols)
+
+  # step 3: score the symbols
   score(symbols)
 }
 ```
@@ -148,7 +153,7 @@ play <- function() {
 play()
 ```
 
-    ## [1] "0" "B" "0"
+    ## [1] "0" "0" "0"
 
     ## [1] 0
 
@@ -156,14 +161,14 @@ play()
 play()
 ```
 
-    ## [1] "BB" "0"  "BB"
+    ## [1] "B"  "BB" "B"
 
-    ## [1] 0
+    ## [1] 5
 
 ``` r
 play()
 ```
 
-    ## [1] "0"   "B"   "BBB"
+    ## [1] "0" "B" "B"
 
     ## [1] 0
