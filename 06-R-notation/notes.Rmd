@@ -18,7 +18,7 @@ object[<subset of rows>, <subset of columns>]
 
  __Ways of write and index in R__
  
- - Positive integers
+- Positive integers
 - Negative integers
 - Zero
 - Blank spaces

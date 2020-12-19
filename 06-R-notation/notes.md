@@ -261,8 +261,8 @@ deck2 <- shuffle(deck)
 deal(deck2)
 ```
 
-    ##     face   suit value
-    ## 50 three hearts     3
+    ##    face     suit value
+    ## 34  six diamonds     6
 
 ## Dollar Signs and Double Brackets
 
